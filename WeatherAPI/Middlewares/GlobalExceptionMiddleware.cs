@@ -18,6 +18,7 @@ namespace WeatherAPI.Middlewares
             catch (Exception exception)
             {
                 string errorId = Guid.NewGuid().ToString();
+                
                 LogContext.PushProperty("ErrorId", errorId);
                 LogContext.PushProperty("StackTrace", exception.StackTrace);
 

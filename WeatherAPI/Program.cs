@@ -1,6 +1,5 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Newtonsoft.Json;
 using Serilog;
 using WeatherAPI.Exceptions;
@@ -12,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Configuration.AddUserSecrets<Program>();
-builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddSingleton<GlobalExceptionMiddleware>();
 builder.Services.AddCors(options =>
 {
@@ -37,7 +35,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseSerilogRequestLogging();
-
 app.UseCors();
 app.UseHttpsRedirection();
 app.UseMiddleware<GlobalExceptionMiddleware>();
